@@ -1,0 +1,96 @@
+
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('img/field_1.jpg')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+
+      <div class="col-lg-8 col-md-10 mx-auto" >
+
+        <div class="site-heading">
+              <img src="img/epl.png">
+            <h1>{{myLeague.leagueHeading}}</h1>
+       <hr class="small">
+      <span class="subheading">{{myLeague.leagueSlogan}}</span>
+
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</header>
+
+<!-- Main Content -->
+<div class="container" style="background-image: url('img/ball-big.jpg')">
+
+      <div class="row">
+
+        <div class="col-lg-10 col-md-12 mx-auto">
+          <form>
+              <div class="form-group">
+                <table align="center">
+                  <tr>
+
+                    <td>Match-Day:</td>
+                    <td colspan="4"><input type="text" class="form-control" ng-model="findName" placeholder="Enter Match Day" /></td>
+                  </tr>
+                  <tr>
+                    <td>Team Name:</td>
+                    <td><input type="text" class="form-control" ng-model="findTeam" placeholder="Enter Team Name" /></td>
+                    <td></td>
+                    <td> Year :</td>
+                    <td><input type="text" class="form-control" ng-model="findYear" placeholder="Enter Year" /></td>
+                  </tr>
+                  <tr>
+                    <td>Team-1 code:</td>
+                    <td><input type="text" class="form-control" ng-model="findCode.team1.code" placeholder="Enter your Team code" /></td>
+                    <td></td>
+                    <td>Team-2 code:</td>
+                    <td><input type="text" class="form-control" ng-model="findCode.team2.code" placeholder="Enter your Team code" /></td>
+                  <tr>
+                    <tr>
+                      <td>Team-1 Key:</td>
+                      <td><input type="text" class="form-control" ng-model="findkey.team1.key" placeholder="Enter your Team code" /></td>
+                      <td></td>
+                      <td>Team-2 key:</td>
+                    <td><input type="text" class="form-control" ng-model="findKey.team2.key" placeholder="Enter your Team key" /></td>
+                  </tr>
+                  <tr>
+                    <td>Team-1 Goal:</td>
+                    <td><input type="text" class="form-control" ng-model="findScore1.score1" placeholder="Enter Your Team Goals" /></td>
+                    <td></td>
+                    <td>Team-2 Goal:</td>
+                    <td> <input type="text" class="form-control" ng-model="findScore1.score2" placeholder="Enter 2nd Team Goals" /></td>
+                  </tr>
+                  </table>
+              </div>
+            </form>
+                <div class="post-preview" ng-repeat="league in myLeague.allMatches | filter:findName">
+
+                    <div ng-repeat="match in league.matches | filter:findTeam | filter:findScore1 | filter:findYear | filter:findCode | filter:findKey">
+
+                        <table align="center"  class="table table-bordered table-striped table-hover">
+                          <tr><th colspan="3">   {{league.name}} </th></tr>
+      <tr><td colspan="3">
+      <a ng-href='#/view-match/{{ match.date | date:"medium" }}/{{ match.team1.code }}/vs/{{ match.team2.code }}'>
+           <h2 class="post-title">
+                  {{match.team1.name}} &nbsp; ({{match.team1.code}})  VS {{match.team2.name}} &nbsp; ({{match.team2.code}})<br>
+           </h2>
+    </a>
+  </td>
+</tr>
+<tr><td>({{match.team1.key}}) &nbsp; {{match.score1}}-{{match.score2}} &nbsp; ({{match.team2.key}})</td>
+
+    </tr>
+    <tr><td align="center"><a class="link_1" ng-href="#/team-wise/{{match.team1.code}}/{{match.team1.key}}">{{match.team1.name}} Statistics</a></td></tr>
+    <tr><td align="center"><a  class="link_1" ng-href="#/team-wise/{{match.team2.code}}/{{match.team2.key}}">{{match.team2.name}} Statistics</a></td></tr>
+            <tr><td align="right" colspan="3"> <p class="post-meta"> -Posted on {{match.date | date:'medium'}}</p> </td></tr>
+        </table>
+                  </div>
+                </div>
+                  </div>
+
+        </div>
+      </div>
+    <hr>
